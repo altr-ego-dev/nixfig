@@ -3,15 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
-let
-  altrUser = import ../../users/altr/default.nix;
-  devUser = import ../../users/dev/default.nix;
-in {
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/nixos/main-user.nix
+      #../../modules/nixos/main-user.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -19,12 +15,12 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Main user
-  main-user.enable = true;
-  main-user.userName = altrUser.name;
+  #main-user.enable = true;
+  #main-user.userName = "altr";
 
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdb";
+  boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "florence"; # Define your hostname.
@@ -126,10 +122,12 @@ in {
     fixedsys-excelsior
   ];
 
+/*
   users.users = {
     "${altrUser.name}" = altrUser.userConfig;
     "${devUser.name}" = devUser.userConfig;
   };
+
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
@@ -138,6 +136,24 @@ in {
       "${devUser.name}" = altrUser.homeConfig;
     };
   };
+*/
+
+users.users = {
+  "altr" = {
+    name = "altr";
+    isNormalUser = true;
+    description = "Altr";
+    extraGroups = [ "wheel" "networkmanager" ];
+  };
+};
+/*
+home-manager = {
+  extraSpecialArgs = { inherit inputs; };
+  users = {
+    "altr" = import ../../users/altr/home.nix;
+  };
+};
+*/
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

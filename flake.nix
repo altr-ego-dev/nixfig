@@ -28,7 +28,6 @@
           specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/default/configuration.nix
-            inputs.home-manager.nixosModules.default
           ];
         };
 
@@ -36,7 +35,6 @@
           specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/florence/configuration.nix
-            inputs.home-manager.nixosModules.default
           ];
         };
 
