@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./altr/user.nix
+  ];
+}

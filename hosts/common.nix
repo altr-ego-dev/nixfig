@@ -6,29 +6,17 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #../../modules/nixos/main-user.nix
+      /etc/hardware-configuration.nix
+      ../users/default.nix
       inputs.home-manager.nixosModules.default
     ];
 
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Main user
-  #main-user.enable = true;
-  #main-user.userName = "altr";
-
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "florence"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -113,48 +101,15 @@
   environment.systemPackages = with pkgs; [
     alacritty
     vim
-    brave
     git
     wget
     neofetch
     ipfetch
     gnome-tweaks
     fixedsys-excelsior
-    zed-editor
   ];
 
-/*
-  users.users = {
-    "${altrUser.name}" = altrUser.userConfig;
-    "${devUser.name}" = devUser.userConfig;
-  };
-
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "${altrUser.name}" = altrUser.homeConfig;
-      "${devUser.name}" = altrUser.homeConfig;
-    };
-  };
-*/
-
-users.users = {
-  "altr" = {
-    name = "altr";
-    isNormalUser = true;
-    description = "Altr";
-    extraGroups = [ "wheel" "networkmanager" ];
-  };
-};
-/*
-home-manager = {
-  extraSpecialArgs = { inherit inputs; };
-  users = {
-    "altr" = import ../../users/altr/home.nix;
-  };
-};
-*/
+  home-manager.extraSpecialArgs = { inherit inputs; };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
