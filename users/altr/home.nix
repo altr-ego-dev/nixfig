@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
-
 {
+  imports = [
+    ../common.nix
+  ];
+
   home.username = "altr";
   home.homeDirectory = "/home/altr";
   #home.packages = [

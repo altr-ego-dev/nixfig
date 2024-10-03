@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   home.packages = with pkgs; [
     # # It is sometimes useful to fine-tune packages, for example, by applying

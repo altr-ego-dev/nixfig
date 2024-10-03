@@ -4,10 +4,9 @@
 
 { config, pkgs, inputs, ... }:
 {
-  imports =
-    [
-      ../commmon-config.nix
-    ];
+  imports = [
+    ../commmon.nix
+  ];
 
   # Bootloader.
   boot.loader.grub.device = "/dev/sda";
