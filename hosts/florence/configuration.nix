@@ -6,17 +6,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #../../modules/nixos/main-user.nix
+      ./hardware-configuration
       inputs.home-manager.nixosModules.default
     ];
 
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Main user
-  #main-user.enable = true;
-  #main-user.userName = "altr";
 
   # Bootloader.
   boot.loader.grub.enable = true;

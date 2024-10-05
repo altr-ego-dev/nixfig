@@ -3,21 +3,15 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./main-user.nix
       inputs.home-manager.nixosModules.default
     ];
 
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Main user
-  main-user.enable = true;
-  main-user.userName = "altr";
 
   # Bootloader.
   boot.loader.grub.enable = true;

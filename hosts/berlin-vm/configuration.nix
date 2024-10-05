@@ -5,8 +5,11 @@
 { config, pkgs, inputs, ... }:
 {
   imports = [
-    ../commmon.nix
+    ./hardware-configuration.nix
+    ../common-config.nix
   ];
+
+  userList."altr".enable = true;
 
   # Bootloader.
   boot.loader.grub.device = "/dev/sda";

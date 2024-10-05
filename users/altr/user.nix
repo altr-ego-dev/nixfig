@@ -1,14 +1,13 @@
-{ lib, config, pkgs, ...}: 
+{ lib, config, ... }:
 {
-  imports = [ ./home.nix ];
   options = {
-    user."altr".enable = lib.mkEnableOption {
+    userList."altr".enable = lib.mkEnableOption {
       description = "Enable user: altr";
       default = true;
     };
   };
 
-  config = lib.mkIf config.user."altr".enable {
+  config = lib.mkIf config.userList."altr".enable {
     users.users."altr" = {
       name = "altr";
       description = "altr";
@@ -18,5 +17,5 @@
     };
 
     home-manager.users."altr" = import ./home.nix;
-  };  
+  };
 }

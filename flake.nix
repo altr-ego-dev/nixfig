@@ -21,7 +21,6 @@
         };
       };
     in {
-
       nixosConfigurations = {
 
         default = nixpkgs.lib.nixosSystem {
