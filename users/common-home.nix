@@ -13,7 +13,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    kitty
     brave
     zed-editor
   ];

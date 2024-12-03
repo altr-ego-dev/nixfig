@@ -44,6 +44,13 @@
           ];
         };
 
+        montecarlo = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs system; };
+          modules = [
+            ./hosts/montecarlo/configuration.nix
+          ];
+        };
+
       };
     };
 }
