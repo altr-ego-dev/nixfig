@@ -69,22 +69,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  #
-  # This is done in main-user.nix
-  #
-  #users.users.altr = {
-  #  isNormalUser = true;
-  #  description = "altr";
-  #  extraGroups = [ "networkmanager" "wheel" ];
-  #  packages = with pkgs; [
-  #  #  thunderbird
-  #  ];
-  #};
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
